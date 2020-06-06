@@ -1,5 +1,10 @@
 import React from 'react';
+import { ChooseHeroContainer, SectionHeader } from './ChooseHeroStyled';
 
 export const ChooseHero: React.FC = () => {
-  return <div>choose hero</div>;
+  return (
+    <ChooseHeroContainer>
+      <SectionHeader>Select your fighter</SectionHeader>
+    </ChooseHeroContainer>
+  );
 };
