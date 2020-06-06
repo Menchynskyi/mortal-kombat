@@ -16,3 +16,12 @@ export const MainContainer = styled.main`
     text-shadow: none;
   }
 `;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 0;
+`;
+
+export const Nickname = styled.div``;

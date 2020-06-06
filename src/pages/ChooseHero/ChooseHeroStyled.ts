@@ -16,4 +16,6 @@ export const ChooseHeroContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.background.secondary};
   box-shadow: -5px 5px 0px 0px
     ${({ theme }) => theme.colors.background.tertiary};
+  letter-spacing: 4px;
+  word-spacing: -8px;
 `;
