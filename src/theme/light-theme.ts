@@ -4,11 +4,11 @@ export const lightTheme: DefaultTheme = {
   fontFamily: `'Press Start 2P', cursive, 'Arial', sans-serif`,
   colors: {
     background: {
-      primary: '#FFFFFF',
+      primary: '#08040C',
       secondary: '#F8F8F8',
     },
     text: {
-      primary: '#333333',
+      primary: '#C4C4C4',
       secondary: '#ABABAB',
     },
   },
