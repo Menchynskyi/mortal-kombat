@@ -1,10 +1,5 @@
 import { animations, images } from '../assets';
-
-type Characters = {
-  name: string;
-  image: string;
-  animation: string;
-};
+import { Characters } from '../types';
 
 export const characters: Characters[] = Object.keys(images).map(name => {
   return {
@@ -13,3 +8,10 @@ export const characters: Characters[] = Object.keys(images).map(name => {
     animation: animations[name as keyof typeof images],
   };
 });
+
+export const characterField = [
+  characters.slice(0, 7),
+  [null, ...characters.slice(7, 12), null],
+  [null, ...characters.slice(12, 17), null],
+  [null, ...characters.slice(17), null],
+];

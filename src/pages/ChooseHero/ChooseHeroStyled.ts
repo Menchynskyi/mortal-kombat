@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type CellProps = {
+  isActive: boolean;
+};
+
 export const SectionHeader = styled.h2`
   margin: 0;
   text-transform: uppercase;
@@ -18,4 +22,29 @@ export const ChooseHeroContainer = styled.section`
     ${({ theme }) => theme.colors.background.tertiary};
   letter-spacing: 4px;
   word-spacing: -8px;
+`;
+
+export const Field = styled.div`
+  padding: 10px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Cell = styled.div<CellProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: ${({ theme, isActive }) =>
+    isActive && `0px 0px 0px 5px ${theme.colors.background.tertiary}`};
+  box-shadow: ${({ theme, isActive }) =>
+    isActive && `0px 0px 0px 5px ${theme.colors.background.tertiary}`};
+
+  & img {
+    width: 100px;
+    height: 100px;
+  }
 `;
