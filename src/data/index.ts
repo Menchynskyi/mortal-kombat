@@ -1,7 +1,7 @@
 import { animations, images } from '../assets';
-import { Characters } from '../types';
+import { Character } from '../types';
 
-export const characters: Characters[] = Object.keys(images).map(name => {
+export const characters: Character[] = Object.keys(images).map(name => {
   return {
     name,
     image: images[name as keyof typeof images],

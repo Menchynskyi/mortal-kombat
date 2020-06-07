@@ -1,7 +1,7 @@
-export type Characters = {
+export type Character = {
   name: string;
   image: string;
   animation: string;
 };
 
-export type CharactersField = (Characters | null)[][];
+export type CharactersField = (Character | null)[][];

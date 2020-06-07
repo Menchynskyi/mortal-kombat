@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 type CellProps = {
   isActive: boolean;
+  label: number;
+};
+
+type SelectedCharacterProps = {
+  player: number;
 };
 
 export const SectionHeader = styled.h2`
@@ -12,6 +17,7 @@ export const SectionHeader = styled.h2`
 `;
 
 export const ChooseHeroContainer = styled.section`
+  position: relative;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -34,17 +40,43 @@ export const Row = styled.div`
 `;
 
 export const Cell = styled.div<CellProps>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
   background-color: ${({ theme, isActive }) =>
-    isActive && `0px 0px 0px 5px ${theme.colors.background.tertiary}`};
+    isActive && `${theme.colors.background.yellow}`};
   box-shadow: ${({ theme, isActive }) =>
-    isActive && `0px 0px 0px 5px ${theme.colors.background.tertiary}`};
+    isActive && `0px 0px 0px 5px ${theme.colors.background.yellow}`};
 
   & img {
     width: 100px;
     height: 100px;
+  }
+
+  &::after {
+    display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: ${({ theme }) => theme.colors.background.yellow};
+    font-size: ${({ theme }) => theme.fontSize.heading.large};
+    content: attr(label);
+  }
+`;
+
+export const SelectedCharacter = styled.div<SelectedCharacterProps>`
+  position: absolute;
+  bottom: 20px;
+  ${({ player }) =>
+    player === 1 ? 'left: 15px;' : 'right: 15px; transform: scaleX(-1)'};
+
+  & img {
+    height: 350px;
   }
 `;
