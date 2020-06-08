@@ -4,6 +4,10 @@ type FightScreenContainerProps = {
   backgroundUrl: string;
 };
 
+type AbilityItemProps = {
+  backgroundUrl: string;
+};
+
 export const FightScreenContainer = styled.section<FightScreenContainerProps>`
   position: relative;
   display: flex;
@@ -46,6 +50,7 @@ export const VsStyled = styled.div`
 export const FightersContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
 
   & img {
@@ -55,4 +60,23 @@ export const FightersContainer = styled.div`
   & img:last-of-type {
     transform: scaleX(-1);
   }
+`;
+
+export const AbilityList = styled.ul`
+  display: flex;
+  margin: 0;
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors.background.primary};
+`;
+
+export const AbilityItem = styled.li<AbilityItemProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.background.yellow};
+  width: 54px;
+  height: 54px;
+  background-image: ${({ backgroundUrl }) => `url(${backgroundUrl})`};
+  list-style: none;
+  border: 2px solid ${({ theme }) => theme.colors.background.yellow};
 `;

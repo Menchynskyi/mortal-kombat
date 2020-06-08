@@ -12,7 +12,9 @@ export const App: React.FC = () => {
     <MainContainer>
       <Header>
         <div>{firstPlayer.nickname}</div>
-        <Audio />
+        {firstPlayer.nickname && (
+          <Audio audioUrl="https://firebasestorage.googleapis.com/v0/b/mortal-kombat-8e292.appspot.com/o/music%2Fmk.mp3?alt=media&token=2e0a4300-6089-40df-bc54-34d79b3c71cf" />
+        )}
       </Header>
       <Switch>
         <Route path="/" exact component={NicknameForm} />

@@ -1,15 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import { VolumeButton } from './AudioStyled';
+import { usePlayersState } from '../../contexts';
+
+type AudioProps = {
+  audioUrl: string;
+};
 
 const initialVolume = 0.1;
 
-export const Audio: React.FC = () => {
+export const Audio: React.FC<AudioProps> = ({ audioUrl }) => {
   const [volume, setVolume] = useState(initialVolume);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { firstPlayer } = usePlayersState();
 
-  const handleToggleVolume = () => {
+  const handleToggleVolume = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     if (audioRef.current) {
       if (volume > 0) {
         audioRef.current.volume = 0;
@@ -20,7 +28,16 @@ export const Audio: React.FC = () => {
         setVolume(initialVolume);
       }
     }
+    event.currentTarget.blur(); // for correct work of pressing Enter
   };
+
+  useEffect(() => {
+    if (firstPlayer.nickname && audioRef.current) {
+      audioRef.current.volume = volume;
+      audioRef.current.play();
+    }
+    // eslint-disable-next-line
+  }, [firstPlayer.nickname]);
 
   return (
     <div>
@@ -28,10 +45,7 @@ export const Audio: React.FC = () => {
         <FontAwesomeIcon icon={volume ? faVolumeUp : faVolumeMute} />
       </VolumeButton>
       <audio ref={audioRef}>
-        <source
-          src="https://firebasestorage.googleapis.com/v0/b/mortal-kombat-8e292.appspot.com/o/music%2Fmk.mp3?alt=media&token=2e0a4300-6089-40df-bc54-34d79b3c71cf"
-          type="audio/mpeg"
-        />
+        <source src={audioUrl} type="audio/mpeg" />
       </audio>
     </div>
   );

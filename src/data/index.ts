@@ -24,7 +24,7 @@ export const characterField = [
   [null, ...characters.slice(17), null],
 ];
 
-export const fightIcons = [
+export const abilityIcons = [
   faSquare,
   faCircle,
   faCaretSquareUp,
@@ -32,5 +32,7 @@ export const fightIcons = [
   faAngleDoubleLeft,
   faAngleDoubleRight,
 ];
+
+export const abilityKeys = ['Q', 'W', 'E', 'R', 'T', 'Y'];
 
 export const arenasList = Object.values(arenas);

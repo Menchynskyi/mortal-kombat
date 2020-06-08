@@ -1,16 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import {
   FightScreenContainer,
   SectionHeader,
   VsStyled,
   FightersContainer,
+  AbilityList,
+  AbilityItem,
 } from './VsScreenStyled';
 import { usePlayersState } from '../../contexts';
 import { generateRandomNumber } from '../../utils';
 import { arenasList } from '../../data';
 import { useTimer } from '../../hooks';
 import { WinMessage } from '../../components';
+import { logo } from '../../assets';
 
 export const VsScreen: React.FC = () => {
   const { firstPlayer, secondPlayer } = usePlayersState();
@@ -38,9 +41,12 @@ export const VsScreen: React.FC = () => {
           src={firstPlayer.character.animation}
           alt={firstPlayer.character.name}
         />
+        <AbilityList>
+          <AbilityItem backgroundUrl={logo}>Q</AbilityItem>
+        </AbilityList>
         <img
-          src={secondPlayer.character.animation}
-          alt={secondPlayer.character.name}
+          src={secondPlayer.character?.animation}
+          alt={secondPlayer.character?.name}
         />
       </FightersContainer>
     </FightScreenContainer>
