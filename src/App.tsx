@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ChooseHero, VsScreen } from './pages';
 import { MainContainer, Header } from './AppStyled';
 import { Audio, NicknameForm } from './components';
 import { usePlayersState } from './contexts';
+import { usePreload } from './hooks';
 import { animations } from './assets';
 
 export const App: React.FC = () => {
   const { firstPlayer } = usePlayersState();
-
-  useEffect(() => {
-    Object.values(animations).map(animation => {
-      new Image().src = animation;
-    });
-  }, []);
+  usePreload(animations);
 
   return (
     <MainContainer>
