@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import { VolumeButton } from './AudioStyled';
@@ -16,13 +16,13 @@ export const Audio: React.FC<AudioProps> = ({ audioUrl }) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { firstPlayer } = usePlayersState();
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.keyCode === 77) {
       if (buttonRef.current) {
         buttonRef.current.click();
       }
     }
-  };
+  }, []);
 
   const handleToggleVolume = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>

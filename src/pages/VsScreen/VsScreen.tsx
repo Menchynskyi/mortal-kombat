@@ -30,7 +30,7 @@ export const VsScreen: React.FC = () => {
     return () => {
       dispatch({ type: 'resetCharacters' });
     };
-  }, []);
+  }, [dispatch]);
 
   if (!seconds) return <WinMessage redirectUrl="/" />;
 
