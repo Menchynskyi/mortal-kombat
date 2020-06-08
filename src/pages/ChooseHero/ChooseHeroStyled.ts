@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 type CellProps = {
   isActive: boolean;
-  label: number;
+  player: number;
 };
 
 type SelectedCharacterProps = {
@@ -66,7 +66,7 @@ export const Cell = styled.div<CellProps>`
     right: 0;
     color: ${({ theme }) => theme.colors.background.yellow};
     font-size: ${({ theme }) => theme.fontSize.heading.large};
-    content: attr(label);
+    ${({ player }) => (player === 1 ? `content: '1'` : `content: '2'`)};
   }
 `;
 

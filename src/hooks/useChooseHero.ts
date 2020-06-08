@@ -1,26 +1,65 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Character, CharactersField } from '../types';
+import { usePlayersState, usePlayersDispatch } from '../contexts';
 
 type UseChooseHero = {
-  selectedCharacter: Character;
+  firstSelectedCharacter: Character;
+  secondSelectedCharacter: Character;
   player: 1 | 2;
+  coordinates: { x: number; y: number };
+};
+
+const initialCoordinates = {
+  x: 3,
+  y: 1,
 };
 
 export const useChooseHero = (
   characterField: CharactersField
 ): UseChooseHero => {
   const [player, setPlayer] = useState<1 | 2>(1);
-  const [coordinates, setCoordinates] = useState({
-    x: 0,
-    y: 0,
-  });
+  const [coordinates, setCoordinates] = useState(initialCoordinates);
+  const { firstPlayer, secondPlayer } = usePlayersState();
+  const dispatch = usePlayersDispatch();
+  const history = useHistory();
+
+  const firstSelectedCharacter =
+    firstPlayer.character ||
+    (characterField[coordinates.y][coordinates.x] as Character);
+
+  const secondSelectedCharacter =
+    secondPlayer.character ||
+    (characterField[coordinates.y][coordinates.x] as Character);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       switch (event.keyCode) {
         case 13: {
           if (player === 1) {
+            dispatch({
+              type: 'setPlayersCharacter',
+              payload: {
+                player: 1,
+                character: characterField[coordinates.y][
+                  coordinates.x
+                ] as Character,
+              },
+            });
             setPlayer(2);
+            setCoordinates(initialCoordinates);
+          }
+          if (player === 2) {
+            dispatch({
+              type: 'setPlayersCharacter',
+              payload: {
+                player: 2,
+                character: characterField[coordinates.y][
+                  coordinates.x
+                ] as Character,
+              },
+            });
+            history.push('/mc_vs_screen');
           }
           break;
         }
@@ -121,7 +160,7 @@ export const useChooseHero = (
         }
       }
     },
-    [characterField, player]
+    [characterField, player, coordinates]
   );
 
   useEffect(() => {
@@ -132,9 +171,9 @@ export const useChooseHero = (
   }, [handleKeyDown]);
 
   return {
-    selectedCharacter: characterField[coordinates.y][
-      coordinates.x
-    ] as Character,
+    firstSelectedCharacter,
+    secondSelectedCharacter,
     player,
+    coordinates,
   };
 };

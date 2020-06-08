@@ -11,19 +11,25 @@ import {
 import { characterField } from '../../data';
 import { CharactersField } from '../../types';
 import { useChooseHero } from '../../hooks';
+import { usePlayersState } from '../../contexts';
 
 export const ChooseHero: React.FC = () => {
-  const { selectedCharacter, player } = useChooseHero(characterField);
+  const {
+    firstSelectedCharacter,
+    secondSelectedCharacter,
+    player,
+    coordinates,
+  } = useChooseHero(characterField);
 
   const renderField = (field: CharactersField) => {
-    return field.map(row => {
+    return field.map((row, y) => {
       return (
         <Row key={JSON.stringify(row)}>
-          {row.map(character => {
+          {row.map((character, x) => {
             if (!character) return null;
-            const isActive = character.name === selectedCharacter.name;
+            const isActive = coordinates.x === x && coordinates.y === y;
             return (
-              <Cell label={player} isActive={isActive} key={character.name}>
+              <Cell player={player} isActive={isActive} key={character.name}>
                 <img src={character.image} alt={character.name} />
               </Cell>
             );
@@ -39,16 +45,19 @@ export const ChooseHero: React.FC = () => {
       <Field>
         {renderField(characterField)}
         <SelectedCharacter player={1}>
-          <img src={selectedCharacter.animation} alt={selectedCharacter.name} />
-          <CharacterName>{selectedCharacter.name}</CharacterName>
+          <img
+            src={firstSelectedCharacter.animation}
+            alt={firstSelectedCharacter.name}
+          />
+          <CharacterName>{firstSelectedCharacter.name}</CharacterName>
         </SelectedCharacter>
         {player === 2 && (
           <SelectedCharacter player={2}>
             <img
-              src={selectedCharacter.animation}
-              alt={selectedCharacter.name}
+              src={secondSelectedCharacter.animation}
+              alt={secondSelectedCharacter.name}
             />
-            <CharacterName>{selectedCharacter.name}</CharacterName>
+            <CharacterName>{secondSelectedCharacter.name}</CharacterName>
           </SelectedCharacter>
         )}
       </Field>

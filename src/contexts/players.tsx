@@ -82,3 +82,19 @@ export const usePlayersContext = (): PlayersContextState => {
   }
   return context;
 };
+
+export const usePlayersState = (): State => {
+  const context = useContext(PlayersContext);
+  if (context === undefined) {
+    throw new Error('usePlayersState must be used within a PlayersProvider');
+  }
+  return context.state;
+};
+
+export const usePlayersDispatch = (): React.Dispatch<Action> => {
+  const context = useContext(PlayersContext);
+  if (context === undefined) {
+    throw new Error('usePlayersDispatch must be used within a PlayersProvider');
+  }
+  return context.dispatch;
+};
