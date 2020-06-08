@@ -1,4 +1,12 @@
-import { animations, images } from '../assets';
+import {
+  faSquare,
+  faCircle,
+  faCaretSquareUp,
+  faTimes,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { animations, images, arenas } from '../assets';
 import { Character } from '../types';
 
 export const characters: Character[] = Object.keys(images).map(name => {
@@ -15,3 +23,14 @@ export const characterField = [
   [null, ...characters.slice(12, 17), null],
   [null, ...characters.slice(17), null],
 ];
+
+export const fightIcons = [
+  faSquare,
+  faCircle,
+  faCaretSquareUp,
+  faTimes,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+];
+
+export const arenasList = Object.values(arenas);

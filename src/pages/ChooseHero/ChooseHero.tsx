@@ -11,7 +11,6 @@ import {
 import { characterField } from '../../data';
 import { CharactersField } from '../../types';
 import { useChooseHero } from '../../hooks';
-import { usePlayersState } from '../../contexts';
 
 export const ChooseHero: React.FC = () => {
   const {

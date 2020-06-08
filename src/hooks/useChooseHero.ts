@@ -160,7 +160,7 @@ export const useChooseHero = (
         }
       }
     },
-    [characterField, player, coordinates]
+    [characterField, player, coordinates, dispatch, history]
   );
 
   useEffect(() => {

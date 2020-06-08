@@ -5,9 +5,9 @@ import { MainContainer, Header } from './AppStyled';
 import { Audio } from './components';
 
 export const App: React.FC = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  if (location.pathname === '/') {
+  if (pathname === '/') {
     return <Redirect to="/mc_choose_hero" />;
   }
 
