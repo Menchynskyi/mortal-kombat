@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, Redirect, Switch, Route } from 'react-router-dom';
 import { ChooseHero, VsScreen } from './pages';
-import { MainContainer, Header, Nickname } from './AppStyled';
+import { MainContainer, Header } from './AppStyled';
 import { Audio } from './components';
 
 export const App: React.FC = () => {
@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   return (
     <MainContainer>
       <Header>
-        <Nickname>nickname</Nickname>
+        <div>nickname</div>
         <Audio />
       </Header>
       <Switch>

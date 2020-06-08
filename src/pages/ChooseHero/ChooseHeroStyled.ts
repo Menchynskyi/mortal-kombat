@@ -22,7 +22,7 @@ export const ChooseHeroContainer = styled.section`
   flex-flow: column wrap;
   align-items: center;
   padding: 15px;
-  min-height: 500px;
+  min-height: 520px;
   background-color: ${({ theme }) => theme.colors.background.secondary};
   box-shadow: -5px 5px 0px 0px
     ${({ theme }) => theme.colors.background.tertiary};
@@ -72,11 +72,24 @@ export const Cell = styled.div<CellProps>`
 
 export const SelectedCharacter = styled.div<SelectedCharacterProps>`
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   ${({ player }) =>
     player === 1 ? 'left: 15px;' : 'right: 15px; transform: scaleX(-1)'};
+  ${({ player }) =>
+    player === 2 &&
+    `
+    & div {
+      transform: scaleX(-1)
+    }
+  `}
 
   & img {
     height: 350px;
   }
+`;
+
+export const CharacterName = styled.div`
+  margin-top: 10px;
+  text-align: center;
+  text-transform: capitalize;
 `;

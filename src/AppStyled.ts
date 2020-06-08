@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.main`
-  max-width: 1000px;
+  max-width: 980px;
   margin: 0 auto;
   padding-top: 15vh;
 
@@ -23,5 +23,3 @@ export const Header = styled.div`
   align-items: flex-end;
   padding: 10px 0;
 `;
-
-export const Nickname = styled.div``;

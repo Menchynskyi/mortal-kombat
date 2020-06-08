@@ -6,6 +6,7 @@ import {
   Row,
   Cell,
   SelectedCharacter,
+  CharacterName,
 } from './ChooseHeroStyled';
 import { characterField } from '../../data';
 import { CharactersField } from '../../types';
@@ -39,6 +40,7 @@ export const ChooseHero: React.FC = () => {
         {renderField(characterField)}
         <SelectedCharacter player={1}>
           <img src={selectedCharacter.animation} alt={selectedCharacter.name} />
+          <CharacterName>{selectedCharacter.name}</CharacterName>
         </SelectedCharacter>
         {player === 2 && (
           <SelectedCharacter player={2}>
@@ -46,6 +48,7 @@ export const ChooseHero: React.FC = () => {
               src={selectedCharacter.animation}
               alt={selectedCharacter.name}
             />
+            <CharacterName>{selectedCharacter.name}</CharacterName>
           </SelectedCharacter>
         )}
       </Field>
