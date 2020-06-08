@@ -73,10 +73,12 @@ export const AbilityItem = styled.li<AbilityItemProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.background.yellow};
   width: 54px;
   height: 54px;
   background-image: ${({ backgroundUrl }) => `url(${backgroundUrl})`};
+  background-repeat: no-repeat;
   list-style: none;
   border: 2px solid ${({ theme }) => theme.colors.background.yellow};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: ${({ theme }) => theme.fontSize.heading.large};
 `;

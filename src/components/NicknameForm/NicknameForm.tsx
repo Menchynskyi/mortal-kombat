@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
 import { usePlayersDispatch, usePlayersState } from '../../contexts';
 import { FormStyled, InputStyled, SubmitButton } from './NicknameFormStyled';
@@ -7,6 +7,13 @@ export const NicknameForm: React.FC = () => {
   const [nickname, setNickname] = useState('');
   const dispatch = usePlayersDispatch();
   const { firstPlayer } = usePlayersState();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   if (firstPlayer.nickname) {
     return <Redirect to="/mc_choose_hero" />;
@@ -27,6 +34,7 @@ export const NicknameForm: React.FC = () => {
     <FormStyled onSubmit={handleSubmit}>
       <InputStyled
         placeholder="Nickname"
+        ref={inputRef}
         value={nickname}
         onChange={handleChange}
       />

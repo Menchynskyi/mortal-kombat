@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   FightScreenContainer,
   SectionHeader,
@@ -10,21 +11,36 @@ import {
 } from './VsScreenStyled';
 import { usePlayersState } from '../../contexts';
 import { generateRandomNumber } from '../../utils';
-import { arenasList } from '../../data';
-import { useTimer } from '../../hooks';
+import { arenasList, abilityKeys, abilityIcons } from '../../data';
+import { useTimer, useAbilities } from '../../hooks';
 import { WinMessage } from '../../components';
 import { logo } from '../../assets';
+import { Abilities } from '../../types';
 
 export const VsScreen: React.FC = () => {
   const { firstPlayer, secondPlayer } = usePlayersState();
   const arena = useMemo(() => arenasList[generateRandomNumber(4)], []);
   const seconds = useTimer(10);
+  const abilities = useAbilities(abilityIcons, abilityKeys);
 
   if (!seconds) return <WinMessage redirectUrl="/" />;
 
   if (!firstPlayer.character || !secondPlayer.character) {
     return <Redirect to="/mc_choose_hero" />;
   }
+
+  const renderAbilities = (abilitityList: Abilities) => {
+    return abilitityList.map(ability => {
+      if (typeof ability === 'string') {
+        return <AbilityItem backgroundUrl={logo}>{ability}</AbilityItem>;
+      }
+      return (
+        <AbilityItem backgroundUrl={logo}>
+          <FontAwesomeIcon icon={ability} />
+        </AbilityItem>
+      );
+    });
+  };
 
   return (
     <FightScreenContainer backgroundUrl={arena}>
@@ -41,9 +57,7 @@ export const VsScreen: React.FC = () => {
           src={firstPlayer.character.animation}
           alt={firstPlayer.character.name}
         />
-        <AbilityList>
-          <AbilityItem backgroundUrl={logo}>Q</AbilityItem>
-        </AbilityList>
+        <AbilityList>{renderAbilities(abilities)}</AbilityList>
         <img
           src={secondPlayer.character?.animation}
           alt={secondPlayer.character?.name}
