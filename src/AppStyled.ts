@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MainContainer = styled.main`
   max-width: 1000px;
   margin: 0 auto;
-  padding-top: 20vh;
+  padding-top: 15vh;
 
   & ::selection {
     background-color: ${({ theme }) => theme.colors.text.primary};
