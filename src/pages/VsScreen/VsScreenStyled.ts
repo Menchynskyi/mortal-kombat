@@ -33,6 +33,14 @@ export const VsStyled = styled.div`
   top: 15px;
   left: ${({ theme }) => `calc(50% -  ${theme.fontSize.heading.large})`};
   font-size: ${({ theme }) => theme.fontSize.heading.large};
+
+  & div {
+    text-align: center;
+
+    &:last-of-type {
+      margin-top: 5px;
+    }
+  }
 `;
 
 export const FightersContainer = styled.div`
