@@ -11,8 +11,9 @@ import {
 } from './ChooseHeroStyled';
 import { characterField } from '../../data';
 import { CharactersField } from '../../types';
-import { useChooseHero } from '../../hooks';
+import { useChooseHero, usePreload } from '../../hooks';
 import { usePlayersState } from '../../contexts';
+import { arenas } from '../../assets';
 
 export const ChooseHero: React.FC = () => {
   const {
@@ -22,6 +23,8 @@ export const ChooseHero: React.FC = () => {
     coordinates,
   } = useChooseHero(characterField);
   const { firstPlayer } = usePlayersState();
+
+  usePreload(arenas);
 
   if (!firstPlayer.nickname) {
     return <Redirect to="/" />;

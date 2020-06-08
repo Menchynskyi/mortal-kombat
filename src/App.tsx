@@ -4,9 +4,12 @@ import { ChooseHero, VsScreen } from './pages';
 import { MainContainer, Header } from './AppStyled';
 import { Audio, NicknameForm } from './components';
 import { usePlayersState } from './contexts';
+import { usePreload } from './hooks';
+import { animations } from './assets';
 
 export const App: React.FC = () => {
   const { firstPlayer } = usePlayersState();
+  usePreload(animations);
 
   return (
     <MainContainer>
