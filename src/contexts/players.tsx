@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useContext } from 'react';
 import { Character } from '../types';
 
 type Player = {
-  nickName: string;
+  nickname: string;
   character: Character | null;
 };
 
@@ -11,10 +11,12 @@ type State = {
   secondPlayer: Player;
 };
 
-export type Action = {
-  type: 'setPlayersCharacter';
-  payload: { player: 1 | 2; character: Character };
-};
+export type Action =
+  | {
+      type: 'setPlayersCharacter';
+      payload: { player: 1 | 2; character: Character };
+    }
+  | { type: 'setNickname'; payload: { player: 1 | 2; nickname: string } };
 
 export type PlayersContextState = {
   state: State;
@@ -25,11 +27,11 @@ type PlayersProviderProps = { children: React.ReactNode };
 
 export const initialState: State = {
   firstPlayer: {
-    nickName: '',
+    nickname: '',
     character: null,
   },
   secondPlayer: {
-    nickName: '',
+    nickname: '',
     character: null,
   },
 };
@@ -51,6 +53,24 @@ const playersReducer = (state: State, action: Action) => {
         secondPlayer: {
           ...state.secondPlayer,
           character: action.payload.character,
+        },
+      };
+    }
+    case 'setNickname': {
+      if (action.payload.player === 1) {
+        return {
+          ...state,
+          firstPlayer: {
+            ...state.firstPlayer,
+            nickname: action.payload.nickname,
+          },
+        };
+      }
+      return {
+        ...state,
+        secondPlayer: {
+          ...state.secondPlayer,
+          nickname: action.payload.nickname,
         },
       };
     }

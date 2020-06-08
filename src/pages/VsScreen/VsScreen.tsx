@@ -10,7 +10,7 @@ import { usePlayersState } from '../../contexts';
 import { generateRandomNumber } from '../../utils';
 import { arenasList } from '../../data';
 import { useTimer } from '../../hooks';
-import { WinMessage } from '../../components/WinMessage';
+import { WinMessage } from '../../components';
 
 export const VsScreen: React.FC = () => {
   const { firstPlayer, secondPlayer } = usePlayersState();

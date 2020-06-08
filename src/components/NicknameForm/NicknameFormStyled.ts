@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
-export const MessageContainer = styled.div`
+export const FormStyled = styled.form`
   display: flex;
   flex-flow: column wrap;
-  margin: 120px auto;
+  margin-top: 120px;
   font-size: ${({ theme }) => theme.fontSize.heading.large};
+`;
+
+export const InputStyled = styled.input`
+  border: none;
+  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.background.tertiary};
+  color: ${({ theme }) => theme.colors.text.primary};
   text-align: center;
 `;
 
-export const Button = styled.button`
+export const SubmitButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

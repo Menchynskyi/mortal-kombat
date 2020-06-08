@@ -1,23 +1,21 @@
 import React from 'react';
-import { useLocation, Redirect, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { ChooseHero, VsScreen } from './pages';
 import { MainContainer, Header } from './AppStyled';
-import { Audio } from './components';
+import { Audio, NicknameForm } from './components';
+import { usePlayersState } from './contexts';
 
 export const App: React.FC = () => {
-  const { pathname } = useLocation();
-
-  if (pathname === '/') {
-    return <Redirect to="/mc_choose_hero" />;
-  }
+  const { firstPlayer } = usePlayersState();
 
   return (
     <MainContainer>
       <Header>
-        <div>nickname</div>
+        <div>{firstPlayer.nickname}</div>
         <Audio />
       </Header>
       <Switch>
+        <Route path="/" exact component={NicknameForm} />
         <Route path="/mc_choose_hero" component={ChooseHero} />
         <Route path="/mc_vs_screen" component={VsScreen} />
       </Switch>

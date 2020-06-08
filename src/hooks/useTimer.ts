@@ -16,6 +16,7 @@ export const useTimer = (seconds: number): number => {
     return () => {
       clearInterval(timer);
     };
+    // eslint-disable-next-line
   }, []);
 
   return sec;

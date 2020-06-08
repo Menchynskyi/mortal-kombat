@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   ChooseHeroContainer,
   SectionHeader,
@@ -11,6 +12,7 @@ import {
 import { characterField } from '../../data';
 import { CharactersField } from '../../types';
 import { useChooseHero } from '../../hooks';
+import { usePlayersState } from '../../contexts';
 
 export const ChooseHero: React.FC = () => {
   const {
@@ -19,6 +21,11 @@ export const ChooseHero: React.FC = () => {
     player,
     coordinates,
   } = useChooseHero(characterField);
+  const { firstPlayer } = usePlayersState();
+
+  if (!firstPlayer.nickname) {
+    return <Redirect to="/" />;
+  }
 
   const renderField = (field: CharactersField) => {
     return field.map((row, y) => {
