@@ -10,5 +10,6 @@ export const usePreload = (assets: Assets): void => {
     Object.values(assets).map(animation => {
       new Image().src = animation;
     });
+    // eslint-disable-next-line
   }, []);
 };

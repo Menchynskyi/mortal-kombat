@@ -21,6 +21,7 @@ export const ChooseHero: React.FC = () => {
     secondSelectedCharacter,
     player,
     coordinates,
+    setCoordinates,
   } = useChooseHero(characterField);
   const { firstPlayer } = usePlayersState();
 
@@ -38,7 +39,12 @@ export const ChooseHero: React.FC = () => {
             if (!character) return null;
             const isActive = coordinates.x === x && coordinates.y === y;
             return (
-              <Cell player={player} isActive={isActive} key={character.name}>
+              <Cell
+                onClick={() => setCoordinates({ x, y })}
+                player={player}
+                isActive={isActive}
+                key={character.name}
+              >
                 <img src={character.image} alt={character.name} />
               </Cell>
             );

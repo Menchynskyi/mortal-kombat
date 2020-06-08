@@ -68,6 +68,10 @@ export const Cell = styled.div<CellProps>`
     font-size: ${({ theme }) => theme.fontSize.heading.large};
     ${({ player }) => (player === 1 ? `content: '1'` : `content: '2'`)};
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const SelectedCharacter = styled.div<SelectedCharacterProps>`
