@@ -16,7 +16,10 @@ export type Action =
       type: 'setPlayersCharacter';
       payload: { player: 1 | 2; character: Character };
     }
-  | { type: 'setNickname'; payload: { player: 1 | 2; nickname: string } };
+  | { type: 'setNickname'; payload: { player: 1 | 2; nickname: string } }
+  | {
+      type: 'resetCharacters';
+    };
 
 export type PlayersContextState = {
   state: State;
@@ -71,6 +74,19 @@ const playersReducer = (state: State, action: Action) => {
         secondPlayer: {
           ...state.secondPlayer,
           nickname: action.payload.nickname,
+        },
+      };
+    }
+    case 'resetCharacters': {
+      return {
+        ...state,
+        firstPlayer: {
+          ...state.firstPlayer,
+          character: null,
+        },
+        secondPlayer: {
+          ...state.secondPlayer,
+          character: null,
         },
       };
     }

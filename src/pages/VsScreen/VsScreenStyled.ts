@@ -51,7 +51,7 @@ export const FightersContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 100%;
+  width: 90%;
 
   & img {
     height: 300px;

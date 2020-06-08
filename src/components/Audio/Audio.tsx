@@ -13,7 +13,16 @@ const initialVolume = 0.1;
 export const Audio: React.FC<AudioProps> = ({ audioUrl }) => {
   const [volume, setVolume] = useState(initialVolume);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { firstPlayer } = usePlayersState();
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.keyCode === 77) {
+      if (buttonRef.current) {
+        buttonRef.current.click();
+      }
+    }
+  };
 
   const handleToggleVolume = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -39,9 +48,16 @@ export const Audio: React.FC<AudioProps> = ({ audioUrl }) => {
     // eslint-disable-next-line
   }, [firstPlayer.nickname]);
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
+
   return (
     <div>
-      <VolumeButton onClick={handleToggleVolume}>
+      <VolumeButton ref={buttonRef} onClick={handleToggleVolume}>
         <FontAwesomeIcon icon={volume ? faVolumeUp : faVolumeMute} />
       </VolumeButton>
       <audio ref={audioRef}>

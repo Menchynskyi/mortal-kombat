@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -9,7 +9,7 @@ import {
   AbilityList,
   AbilityItem,
 } from './VsScreenStyled';
-import { usePlayersState } from '../../contexts';
+import { usePlayersState, usePlayersDispatch } from '../../contexts';
 import { generateRandomNumber } from '../../utils';
 import { arenasList, abilityKeys, abilityIcons } from '../../data';
 import { useTimer, useAbilities } from '../../hooks';
@@ -19,9 +19,18 @@ import { Abilities } from '../../types';
 
 export const VsScreen: React.FC = () => {
   const { firstPlayer, secondPlayer } = usePlayersState();
-  const arena = useMemo(() => arenasList[generateRandomNumber(4)], []);
+
   const seconds = useTimer(10);
   const abilities = useAbilities(abilityIcons, abilityKeys);
+
+  const dispatch = usePlayersDispatch();
+  const arena = useMemo(() => arenasList[generateRandomNumber(4)], []);
+
+  useEffect(() => {
+    return () => {
+      dispatch({ type: 'resetCharacters' });
+    };
+  }, []);
 
   if (!seconds) return <WinMessage redirectUrl="/" />;
 
