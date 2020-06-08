@@ -8,6 +8,12 @@ type UseChooseHero = {
   secondSelectedCharacter: Character;
   player: 1 | 2;
   coordinates: { x: number; y: number };
+  setCoordinates: React.Dispatch<
+    React.SetStateAction<{
+      x: number;
+      y: number;
+    }>
+  >;
 };
 
 const initialCoordinates = {
@@ -175,5 +181,6 @@ export const useChooseHero = (
     secondSelectedCharacter,
     player,
     coordinates,
+    setCoordinates,
   };
 };
