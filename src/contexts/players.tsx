@@ -39,7 +39,7 @@ export const initialState: State = {
   },
 };
 
-const playersReducer = (state: State, action: Action) => {
+const playersReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'setPlayersCharacter': {
       if (action.payload.player === 1) {
