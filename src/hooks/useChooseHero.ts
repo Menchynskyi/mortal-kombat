@@ -40,8 +40,8 @@ export const useChooseHero = (
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      switch (event.keyCode) {
-        case 13: {
+      switch (event.key) {
+        case 'Enter': {
           if (player === 1) {
             dispatch({
               type: 'setPlayersCharacter',
@@ -69,7 +69,7 @@ export const useChooseHero = (
           }
           break;
         }
-        case 37: {
+        case 'ArrowLeft': {
           setCoordinates(({ x, y }) => {
             if (y === 0) {
               if (x === 0) {
@@ -97,7 +97,7 @@ export const useChooseHero = (
           });
           break;
         }
-        case 38: {
+        case 'ArrowUp': {
           setCoordinates(({ x, y }) => {
             if (y === 0 && (x === 0 || x === characterField[0].length - 1)) {
               return { x, y };
@@ -115,7 +115,7 @@ export const useChooseHero = (
           });
           break;
         }
-        case 39: {
+        case 'ArrowRight': {
           setCoordinates(({ x, y }) => {
             if (y === 0) {
               if (x === characterField[0].length - 1) {
@@ -143,7 +143,7 @@ export const useChooseHero = (
           });
           break;
         }
-        case 40: {
+        case 'ArrowDown': {
           setCoordinates(({ x, y }) => {
             if (y === 0 && (x === 0 || x === characterField[0].length - 1)) {
               return { x, y };

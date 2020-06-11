@@ -17,7 +17,7 @@ export const Audio: React.FC<AudioProps> = ({ audioUrl }) => {
   const { firstPlayer } = usePlayersState();
 
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.keyCode === 77) {
+    if (event.key === 'm') {
       if (buttonRef.current) {
         buttonRef.current.click();
       }

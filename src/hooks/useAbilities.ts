@@ -10,8 +10,8 @@ export const useAbilities = (
   const [abilities, setAbilities] = useState<Abilities>(abilityKeys);
 
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    switch (event.keyCode) {
-      case 81: {
+    switch (event.key) {
+      case 'q': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 0) {
@@ -22,7 +22,7 @@ export const useAbilities = (
         });
         break;
       }
-      case 87: {
+      case 'w': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 1) {
@@ -33,7 +33,7 @@ export const useAbilities = (
         });
         break;
       }
-      case 69: {
+      case 'e': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 2) {
@@ -44,7 +44,7 @@ export const useAbilities = (
         });
         break;
       }
-      case 82: {
+      case 'r': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 3) {
@@ -55,7 +55,7 @@ export const useAbilities = (
         });
         break;
       }
-      case 84: {
+      case 't': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 4) {
@@ -66,7 +66,7 @@ export const useAbilities = (
         });
         break;
       }
-      case 89: {
+      case 'y': {
         setAbilities(prev => {
           return prev.map((item, id) => {
             if (id === 5) {
